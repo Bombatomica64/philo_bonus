@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 12:12:25 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/01 17:50:00 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/01 18:29:30 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,7 @@ void	make_processes(t_data_bonus *data)
 			philo_life(data, i);
 		i++;
 	}
+	/* sleep(200);
+	sem_post(data->end);
+	exit(EXIT_SUCCESS); */
 }
