@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 11:18:30 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/01/31 17:34:58 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/01 15:46:40 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,8 @@ void	input_check_bonus(char **av, int ac, t_data_bonus *data)
 void	init_data_bonus(t_data_bonus *data, int ac, char **av)
 {
 	input_check_bonus(av, ac, data);
-	data = malloc(sizeof(t_data_bonus));
 	data->nb_philo = ft_atoi_bonus(av[1]);
+	printf("nb_philo = %d\n", data->nb_philo);
 	data->time_to_die = ft_atoi_bonus(av[2]);
 	data->time_to_eat = ft_atoi_bonus(av[3]);
 	data->time_to_sleep = ft_atoi_bonus(av[4]);

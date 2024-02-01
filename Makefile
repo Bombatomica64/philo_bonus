@@ -2,9 +2,10 @@ NAME = philo_bonus
 
 CC = cc -Wall -Wextra -Werror -g -lpthread -pthread
 
-SRC =	death_bonus.c	main.c	routine_bonus.c	time_bonus.c \
-		initialize_bonus.c  process.c   semaphores.c ft_atoi_bonus.c \
-		../philo/ft_strlen.c
+SRC =	death_bonus.c	ft_atoi_bonus.c	initialize_bonus.c	main.c \
+		print_bonus.c	process.c	routine_bonus.c	semaphores.c	\
+		time_bonus.c 	\
+		../philo/ft_strlen.c 
 
 OBJ = $(SRC:.c=.o)
 
