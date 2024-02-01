@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 11:10:41 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/01 12:44:43 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/01 15:28:20 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 typedef struct s_philo_bonus
 {
 	int					id; // Philosopher id.
-	int					nb_meals; // Number of meals eaten.
+	int					nb_meals; // Number of meals left to eat.
 	pid_t				pid; // Philosopher pid.
 	pthread_t			thread; // Philosopher thread.
 	t_time				life_left; // Time left before death.
@@ -57,7 +57,7 @@ typedef struct s_data_id_bonus
 	int					id; // Philosopher id.
 }	t_data_id_bonus;
 
-void	prints_b(t_action action, long time_since, int id , t_data_bonus *data);
+void	prints_b(t_action action, long time_since, int id, t_data_bonus *data);
 void	print_bonus(t_data_bonus *data, t_action action, int id, long time_s);
 void	input_check_bonus(char **av, int ac, t_data_bonus *data);
 void	init_data_bonus(t_data_bonus *data, int ac, char **av);
