@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 15:27:41 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/01 15:59:41 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/01 17:00:02 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,11 @@ void	philo_life(t_data_bonus *data, int id)
 	pthread_create(&data->philo[id].thread, NULL,
 		&check_death, make_data_id(data, id));
 	get_start_bonus(&data->philo[id].life_left);
-	while (data->philo[id].go_on)
+	while (data->philo[id].go_on == TRUE)
 	{
 		philo_eat(data, id);
 		philo_sleep_think(data, id);
 	}
 	pthread_join(data->philo[id].thread, NULL);
+	ft_close_bonus(data);
 }

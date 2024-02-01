@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 11:10:41 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/01 15:28:20 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/01 16:59:11 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ typedef struct s_data_bonus
 	t_philo_bonus		*philo; // Philosopher struct.
 	sem_t				*forks; // Semaphore for forks.
 	sem_t				*print; // Semaphore for printing.
-	sem_t				*dead; // Semaphore for death.
+	sem_t				*go_on; // Semaphore for continuing.
 	sem_t				*end; // Semaphore for ending.
 }	t_data_bonus;
 
