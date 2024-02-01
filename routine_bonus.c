@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 15:27:41 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/01 17:00:02 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/01 17:51:13 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,20 +43,10 @@ void	take_fork(t_data_bonus *data, int id)
 	print_bonus(data, FORK, id, ft_get_time_bonus(&data->time));
 }
 
-t_data_id_bonus	*make_data_id(t_data_bonus *data, int id)
-{
-	t_data_id_bonus	*data_id;
-
-	data_id = malloc(sizeof(t_data_id_bonus));
-	data_id->data = data;
-	data_id->id = id;
-	return (data_id);
-}
-
 void	philo_life(t_data_bonus *data, int id)
 {
 	pthread_create(&data->philo[id].thread, NULL,
-		&check_death, make_data_id(data, id));
+		&check_death, make_data_id_bonus(data, id));
 	get_start_bonus(&data->philo[id].life_left);
 	while (data->philo[id].go_on == TRUE)
 	{

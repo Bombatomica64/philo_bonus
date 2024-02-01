@@ -4,7 +4,7 @@ CC = cc -Wall -Wextra -Werror -g -lpthread -pthread
 
 SRC =	death_bonus.c	ft_atoi_bonus.c	initialize_bonus.c	main.c \
 		print_bonus.c	process.c	routine_bonus.c	semaphores.c	\
-		time_bonus.c 	\
+		time_bonus.c 	utils_bonus.c\
 		../philo/ft_strlen.c 
 
 OBJ = $(SRC:.c=.o)

@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 11:10:41 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/01 16:59:11 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/01 17:48:45 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,12 +55,13 @@ typedef struct s_data_id_bonus
 {
 	t_data_bonus		*data; // Data struct.
 	int					id; // Philosopher id.
-}	t_data_id_bonus;
+}	t_id;
 
 void	prints_b(t_action action, long time_since, int id, t_data_bonus *data);
 void	print_bonus(t_data_bonus *data, t_action action, int id, long time_s);
 void	input_check_bonus(char **av, int ac, t_data_bonus *data);
 void	init_data_bonus(t_data_bonus *data, int ac, char **av);
+t_id	*make_data_id_bonus(t_data_bonus *data, int id);
 void	philo_life(t_data_bonus *data, int id);
 void	leave_fork(t_data_bonus *data, int id);
 void	philo_eat(t_data_bonus *data, int id);
@@ -73,5 +74,6 @@ void	get_start_bonus(t_time *start);
 int		ft_atoi_bonus(const char *str);
 void	ft_msleep_bonus(int time);
 void	*check_death(void *arg);
+void	ft_close_bonus(t_data_bonus *data);
 
 #endif

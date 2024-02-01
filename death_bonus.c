@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 16:48:57 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/01 16:59:45 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/01 17:48:00 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ void	ft_close_bonus(t_data_bonus *data)
 	free(data->end);
 	sem_close(data->print);
 	free(data->print);
-	sem_close(data->dead);
-	free(data->dead);
+	sem_close(data->go_on);
+	free(data->go_on);
 	free(data->philo);
 	free(data);
 	exit(EXIT_SUCCESS);
@@ -44,17 +44,20 @@ t_bool	go_on_bonus(t_data_bonus *data, t_bool stop)
 
 void	*check_death(void *arg)
 {
-	t_data_id_bonus	*data;
+	t_id	*data;
 
-	data = (t_data_id_bonus *)arg;
+	data = (t_id *)arg;
 	while (TRUE)
 	{
-		data->data->philo[data->id].life_left.time_since = ft_get_time_bonus(&data->data->time);
-		if (data->data->philo[data->id].life_left.time_since > data->data->time_to_die)
+		data->data->philo[data->id]
+			.life_left.time_since = ft_get_time_bonus(&data->data->time);
+		if (data->data->philo[data->id]
+			.life_left.time_since > data->data->time_to_die)
 		{
 			sem_post(data->data->end);
 			data->data->philo[data->id].go_on = FALSE;
-			print_bonus(data->data, DIED, data->id, ft_get_time_bonus(&data->data->time));
+			print_bonus(data->data, DIED, data->id,
+				ft_get_time_bonus(&data->data->time));
 			return (NULL);
 		}
 		if (sem_wait(data->data->end) != -1)
