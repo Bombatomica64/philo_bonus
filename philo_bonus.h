@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 11:10:41 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/01 17:48:45 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/02 15:23:07 by mruggier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,11 @@ typedef struct s_philo_bonus
 	t_time				life_left; // Time left before death.
 	t_bool				dead; // Boolean for death.
 	t_bool				overfed; // Boolean for fed.
-	t_bool				go_on; // Boolean for continuing.
 }	t_philo_bonus;
 
 typedef struct s_data_bonus
 {
+	t_bool				go_on_b; // Boolean for continuing.
 	int					nb_philo; // Number of philosophers.
 	int					time_to_die; // Time in ms before a philosopher dies.
 	int					time_to_eat; // Time in ms for a philosopher to eat.

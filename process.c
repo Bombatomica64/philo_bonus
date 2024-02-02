@@ -3,14 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   process.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 12:12:25 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/01 17:50:00 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/02 15:11:50 by mruggier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_bonus.h"
+
+void	wait_for_death(t_data_bonus *data)
+{
+	int	i;
+	int	status;
+
+	i = 0;
+	while (i < data->nb_philo)
+	{
+		waitpid(data->philo[i].pid, &status, 0);
+		printf("philo %d terminated\n", i);
+		i++;
+	}
+}
 
 void	make_processes(t_data_bonus *data)
 {
@@ -28,4 +42,6 @@ void	make_processes(t_data_bonus *data)
 			philo_life(data, i);
 		i++;
 	}
+	wait_for_death(data);
+	exit(EXIT_SUCCESS);
 }
