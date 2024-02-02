@@ -6,7 +6,7 @@
 /*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 12:12:25 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/02 15:30:17 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/02/02 16:06:39 by mruggier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	wait_for_death(t_data_bonus *data)
 	while (i < data->nb_philo)
 	{
 		waitpid(data->philo[i].pid, &status, 0);
-		printf("philo %d terminated\n", i);
+		//printf("philo %d terminated\n", i);
 		i++;
 	}
 }
@@ -36,7 +36,7 @@ void	make_processes(t_data_bonus *data)
 	{
 		data->philo[i].id = i;
 		data->philo[i].nb_meals = data->nb_meals;
-		data->philo[i].go_on_b = TRUE;
+		data->go_on_b = TRUE;
 		data->philo[i].pid = fork();
 		if (data->philo[i].pid == 0)
 			philo_life(data, i);

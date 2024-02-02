@@ -6,7 +6,7 @@
 /*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 16:48:57 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/02 15:31:18 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/02/02 16:47:28 by mruggier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,46 +36,47 @@ void	ft_close_bonus(t_data_bonus *data)
 	exit(EXIT_SUCCESS);
 }
 
-t_bool	go_on_bonus(t_data_bonus *data, t_bool stop)
-{
-	sem_wait(data->go_on);
-	if (stop == TRUE)
-	{
-		sem_post(data->go_on);
-		return (FALSE);
-	}
-	else
-	{
-		sem_post(data->go_on);
-		return (TRUE);
-	}
-}
-
 void	*check_death(void *arg)
 {
 	t_id	*data;
 
 	data = (t_id *)arg;
-	while (data->data->philo[data->id].go_on == TRUE)
+	while (go_on_bonus(data->data, FALSE) == TRUE)
 	{
 		data->data->philo[data->id]
-			.life_left.time_since = ft_get_time_bonus(&data->data->time);
+			.life_left.time_since = ft_get_time_bonus(&data->data
+			->philo[data->id].life_left);
 		if (data->data->philo[data->id]
 			.life_left.time_since > data->data->time_to_die)
 		{
-			data->data->philo[data->id].go_on = FALSE;
+			printf("a = %ld\n", data->data->philo[data->id].life_left.time_since);
+			printf("b = %d\n", data->data->time_to_die);
+			
+			go_on_bonus(data->data, TRUE);
 			print_bonus(data->data, DIED, data->id,
 				ft_get_time_bonus(&data->data->time));
-			printf("\033[37m%s\n\033[0m", "morto");
-			sem_wait(data->data->end);
+			sem_post(data->data->end);
 			return (NULL);
 		}
-		if (sem_wait(data->data->end) != -1)
+/* 		if (sem_wait(data->data->end) != -1)
 		{
 			sem_post(data->data->end);
-			data->data->philo[data->id].go_on = FALSE;
+			go_on_bonus(data->data, TRUE);
 			return (NULL);
-		}
+		} */
 	}
+	return (NULL);
+}
+
+void	*check_end(void *arg)
+{
+	t_id	*data;
+
+	data = (t_id *)arg;
+	printf("philo %d is waiting for death\n", data->id);
+	sem_wait(data->data->end);
+	printf("philo %d terminated\n", data->id);
+	go_on_bonus(data->data, TRUE);
+	//sem_post(data->data->end);
 	return (NULL);
 }
