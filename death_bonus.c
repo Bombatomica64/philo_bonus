@@ -6,7 +6,7 @@
 /*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 16:48:57 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/02 16:47:28 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/02/02 18:26:31 by mruggier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	ft_close_bonus(t_data_bonus *data)
 	free(data->philo);
 	free(data);
 	// kill(0, SIGTERM);
+	printf("philo terminated\n");
 	exit(EXIT_SUCCESS);
 }
 
@@ -49,9 +50,7 @@ void	*check_death(void *arg)
 		if (data->data->philo[data->id]
 			.life_left.time_since > data->data->time_to_die)
 		{
-			printf("a = %ld\n", data->data->philo[data->id].life_left.time_since);
-			printf("b = %d\n", data->data->time_to_die);
-			
+			data->data->dead_nbr = data->id;
 			go_on_bonus(data->data, TRUE);
 			print_bonus(data->data, DIED, data->id,
 				ft_get_time_bonus(&data->data->time));
@@ -77,6 +76,7 @@ void	*check_end(void *arg)
 	sem_wait(data->data->end);
 	printf("philo %d terminated\n", data->id);
 	go_on_bonus(data->data, TRUE);
-	//sem_post(data->data->end);
+/* 	if (data->data->dead_nbr != -1)
+		sem_post(data->data->end); */
 	return (NULL);
 }

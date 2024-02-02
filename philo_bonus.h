@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 11:10:41 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/02 17:17:20 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/02 18:28:10 by mruggier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,14 @@ typedef struct s_philo_bonus
 
 typedef struct s_data_bonus
 {
+	int					dead_nbr; // id of the dead philosopher.
 	t_bool				go_on_b; // Boolean for continuing.
 	int					nb_philo; // Number of philosophers.
 	int					time_to_die; // Time in ms before a philosopher dies.
 	int					time_to_eat; // Time in ms for a philosopher to eat.
 	int					time_to_sleep; // Time in ms for a philosopher to sleep.
 	int					nb_meals; // Number of meals to eat before stopping.
+	pthread_t			eaten; // Thread for checking if all philo have eaten.
 	t_time				time; // Time struct.
 	t_philo_bonus		*philo; // Philosopher struct.
 	sem_t				*forks; // Semaphore for forks.
@@ -74,6 +76,7 @@ void	make_semaphores(t_data_bonus *data);
 void	ft_close_bonus(t_data_bonus *data);
 void	make_processes(t_data_bonus *data);
 long	ft_get_time_bonus(t_time *start);
+void	*philo_eaten(void *arg);
 void	get_start_bonus(t_time *start);
 int		ft_atoi_bonus(const char *str);
 void	ft_msleep_bonus(int time);

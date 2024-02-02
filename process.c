@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   process.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 12:12:25 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/02 17:18:30 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/02 18:36:51 by mruggier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ void	make_processes(t_data_bonus *data)
 			philo_life(data, i);
 		i++;
 	}
+	pthread_create(&data->eaten, NULL, &philo_eaten, data);
+	pthread_detach(data->eaten);
 	wait_for_death(data);
 	exit(EXIT_SUCCESS);
 }

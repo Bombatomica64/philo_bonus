@@ -6,7 +6,7 @@
 /*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 12:19:27 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/02 16:30:00 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/02/02 18:25:52 by mruggier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,17 @@
 
 void	print_bonus(t_data_bonus *data, t_action action, int id, long time_s)
 {
-	sem_wait(data->print);
 	if (go_on_bonus(data, FALSE) == FALSE && action != DIED)
-	{
-		sem_post(data->print);
 		return ;
-	}
+	sem_wait(data->print);
 	prints_b(action, time_s, id, data);
 	sem_post(data->print);
 }
 
 void	prints_b(t_action action, long time_since, int id, t_data_bonus *data)
 {
+	if (go_on_bonus(data, FALSE) == FALSE && action != DIED)
+		return ;
 	if (action == EAT)
 		printf("\033[1m%ld\033[0;91m philo[%d] is eating\033[0m 🍝️\n",
 			time_since, id +1);
