@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 11:10:41 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/02 16:16:41 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/02/02 17:17:20 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ typedef struct s_data_bonus
 	sem_t				*print; // Semaphore for printing.
 	sem_t				*go_on; // Semaphore for continuing.
 	sem_t				*end; // Semaphore for ending.
+	sem_t				*fed; // Semaphore for fed.
 }	t_data_bonus;
 
 typedef struct s_data_id_bonus
