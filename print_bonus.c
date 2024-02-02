@@ -6,7 +6,7 @@
 /*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 12:19:27 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/02 12:54:09 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/02/02 15:30:45 by mruggier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,10 @@
 
 void	print_bonus(t_data_bonus *data, t_action action, int id, long time_s)
 {
- 	if (action == DIED)
+	sem_wait(data->print);
+	if (sem_wait(data->end) != -1 && action != DIED)
 	{
-		sem_wait(data->print);
-		prints_b(action, time_s, id, data);
-		sem_post(data->print);
-
-		printf("\033[31m%s\n\033[0m", "ciao_sbagliato");
-		//sem_post(data->end);
-		ft_close_bonus(data);
+		sem_post(data->end);
 		return ;
 	}
 	else
