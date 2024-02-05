@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 17:11:54 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/05 12:22:40 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/05 15:29:03 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,5 @@ void	close_main(t_data_bonus *data)
 	post_food(data);
 	sem_post(data->end);
 	sem_post(data->p_eaten);
+	
 }
