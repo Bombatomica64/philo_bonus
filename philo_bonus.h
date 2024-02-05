@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 11:10:41 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/05 12:48:43 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/05 15:55:27 by mruggier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,8 +96,19 @@ void	print_bonus(t_data_bonus *data, t_action action, int id, long time_s);
  * @param data Pointer to the data structure
  *  holding simulation parameters and state.
  */
-void	prints_b(t_action action, long time_since, int id, t_data_bonus *data);
+void	prints_b(t_action action, long time_since, int id, t_data_bonus *data);\
+
+/**
+ * @brief Checks if the inputs are valid.
+ *
+ * if the inputs are invalid closes the program.
+ *
+ * @param data Pointer to the data structure.
+ * @param ac The number of arguments.
+ * @param av The array of arguments.
+ */
 void	input_check_bonus(char **av, int ac, t_data_bonus *data);
+
 void	init_data_bonus(t_data_bonus *data, int ac, char **av);
 void	philo_life(t_data_bonus *data, int identificator);
 t_id	*make_data_id_bonus(t_data_bonus *data, int id);
@@ -110,6 +121,7 @@ void	take_fork(t_data_bonus *data, int id);
 void	make_semaphores(t_data_bonus *data);
 void	ft_close_bonus(t_data_bonus *data);
 void	make_processes(t_data_bonus *data);
+void	close_main(t_data_bonus *data);
 int		ft_atoi_bonus(const char *str);
 void	post_food(t_data_bonus *data);
 void	ft_msleep_bonus(int time);
@@ -124,5 +136,6 @@ void	*stop(void *arg);
 */
 void	*check_end(void *arg);
 t_long	ft_get_time_bonus(t_time *start, t_data_bonus *data);
+
 
 #endif
