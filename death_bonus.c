@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   death_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 16:48:57 by lmicheli          #+#    #+#             */
 /*   Updated: 2024/02/05 15:36:06 by lmicheli         ###   ########.fr       */
@@ -15,9 +15,37 @@
 void	ft_close_bonus(t_data_bonus *data)
 {
 	sem_close(data->forks);
-	sem_close(data->end);
 	sem_close(data->print);
 	sem_close(data->go_on);
+	sem_close(data->end);
+	sem_close(data->fed);
+	sem_close(data->time_lock);
+	sem_close(data->p_eaten);
+	sem_close(data->start_lock);
+
+
+	sem_unlink("forks");
+	sem_unlink("print");
+	sem_unlink("dead");
+	sem_unlink("eat");
+	sem_unlink("end");
+	sem_unlink("time_lock");
+	sem_unlink("p_eaten");
+	sem_unlink("start_lock");
+
+
+
+
+	
+	// sem_close(data->forks);
+	// sem_close(data->end);
+	// sem_close(data->print);
+	// sem_close(data->go_on);
+	// sem_unlink("forks");
+	// sem_unlink("print");
+	// sem_unlink("dead");
+	// sem_unlink("eat");
+	// sem_unlink("end");
 	free(data->philo);
 	free(data);
 	exit(EXIT_SUCCESS);
@@ -43,9 +71,11 @@ void	*check_death(void *arg)
 			sem_post(data->data->p_eaten);
 			post_food(data->data);
 			go_on_bonus(data->data, TRUE);
+			free(data);
 			return (NULL);
 		}
 	}
+	free(data);
 	return (NULL);
 }
 
@@ -69,5 +99,6 @@ void	*check_end(void *arg)
 	sem_wait(data->data->end);
 	go_on_bonus(data->data, TRUE);
 	sem_post(data->data->end);
+	free(data);
 	return (NULL);
 }
