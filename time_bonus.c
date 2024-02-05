@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 15:46:21 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/05 11:22:36 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/05 12:51:27 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,13 @@ void	ft_msleep_bonus(int time)
 		usleep(10);
 }
 
-void	get_start_bonus(t_time *start)
+void	get_start_bonus(t_time *start, sem_t *start_lock)
 {
+	sem_wait(start_lock);
 	gettimeofday(&start->start, NULL);
 	start->start_ms = (start->start.tv_sec) * 1000
 		+ (start->start.tv_usec) / 1000;
+	sem_post(start_lock);
 }
 
 long long	ft_get_time_bonus(t_time *start, t_data_bonus *data)
@@ -43,7 +45,9 @@ long long	ft_get_time_bonus(t_time *start, t_data_bonus *data)
 	long long			time_since;
 
 	sem_wait(data->time_lock);
-	time_since = ft_current_time_bonus() - start->start_ms;
+	time_since = (ft_current_time_bonus() - start->start_ms);
 	sem_post(data->time_lock);
+	if (time_since < 0 || time_since > 100000000)
+		time_since = 0;
 	return (time_since);
 }

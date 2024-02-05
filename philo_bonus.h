@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 11:10:41 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/05 12:22:56 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/05 12:48:43 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ typedef struct s_data_bonus
 	sem_t				*fed; // Semaphore for fed.
 	sem_t				*time_lock; // Semaphore for time.
 	sem_t				*p_eaten; // Semaphore for philo eaten.
+	sem_t				*start_lock; // Semaphore for start time`
 }	t_data_bonus;
 
 typedef struct s_data_id_bonus
@@ -101,6 +102,7 @@ void	init_data_bonus(t_data_bonus *data, int ac, char **av);
 void	philo_life(t_data_bonus *data, int identificator);
 t_id	*make_data_id_bonus(t_data_bonus *data, int id);
 t_bool	go_on_bonus(t_data_bonus *data, t_bool stop);
+void	get_start_bonus(t_time *start, sem_t *lock);
 void	leave_fork(t_data_bonus *all_data, int id);
 void	philo_eat(t_data_bonus *data, int id);
 void	take_fork(t_data_bonus *data, int id);
@@ -108,7 +110,6 @@ void	take_fork(t_data_bonus *data, int id);
 void	make_semaphores(t_data_bonus *data);
 void	ft_close_bonus(t_data_bonus *data);
 void	make_processes(t_data_bonus *data);
-void	get_start_bonus(t_time *start);
 int		ft_atoi_bonus(const char *str);
 void	post_food(t_data_bonus *data);
 void	ft_msleep_bonus(int time);

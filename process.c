@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 12:12:25 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/05 12:09:56 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/05 12:49:26 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	make_processes(t_data_bonus *data)
 	int	i;
 
 	i = 0;
-	get_start_bonus(&data->time);
+	get_start_bonus(&data->time, data->start_lock);
 	while (i < data->nb_philo)
 	{
 		data->philo[i].id = i;
@@ -48,5 +48,5 @@ void	make_processes(t_data_bonus *data)
 	pthread_detach(data->stop_write);
 	pthread_detach(data->eaten);
 	wait_for_death(data);
-	close_main(data);
+	//close_main(data);
 }

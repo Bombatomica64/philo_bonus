@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 15:27:41 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/05 11:54:55 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/05 12:49:43 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	philo_eat(t_data_bonus *data, int id)
 	data->philo[id].nb_meals--;
 	if (data->philo[id].nb_meals == 0)
 		sem_post(data->fed);
-	get_start_bonus(&data->philo[id].life_left);
+	get_start_bonus(&data->philo[id].life_left, data->start_lock);
 	ft_msleep_bonus(data->time_to_eat);
 	leave_fork(data, id);
 	leave_fork(data, id);
@@ -51,15 +51,17 @@ void	philo_life(t_data_bonus *data, int id)
 		&check_death, make_data_id_bonus(data, id));
 	pthread_create(&data->philo[id].end, NULL,
 		&check_end, make_data_id_bonus(data, id));
-	get_start_bonus(&data->philo[id].life_left);
+	if (id % 2 == 0)
+		ft_msleep_bonus(100);
+	get_start_bonus(&data->philo[id].life_left, data->start_lock);
 	while (go_on_bonus(data, FALSE) == TRUE)
 	{
 		philo_eat(data, id);
 		philo_sleep_think(data, id);
 	}
-	pthread_join(data->philo[id].thread, NULL);
+//	pthread_join(data->philo[id].thread, NULL);
 	pthread_join(data->philo[id].end, NULL);
-	pthread_detach(data->philo[id].end);
-	pthread_detach(data->philo[id].thread);
+//	pthread_detach(data->philo[id].end);
+//	pthread_detach(data->philo[id].thread);
 	ft_close_bonus(data);
 }

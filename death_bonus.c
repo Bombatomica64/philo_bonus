@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 16:48:57 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/05 12:08:58 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/05 12:36:45 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ void	ft_close_bonus(t_data_bonus *data)
 	// sem_unlink("end");
 	free(data->philo);
 	free(data);
-	printf("philo terminated\n");
 	exit(EXIT_SUCCESS);
 }
 
@@ -39,13 +38,14 @@ void	*check_death(void *arg)
 		data->data->philo[data->id]
 			.life_left.time_since = ft_get_time_bonus(&data->data
 				->philo[data->id].life_left, data->data);
+		printf("time since %lld\n", data->data->philo[data->id]
+			.life_left.time_since);
 		if (data->data->philo[data->id]
 			.life_left.time_since > data->data->time_to_die)
 		{
 			data->data->dead_nbr = data->id;
 			print_bonus(data->data, DIED, data->id,
 				ft_get_time_bonus(&data->data->time, data->data));
-			printf("philo %d ha postato end\n", data->id);
 			sem_post(data->data->end);
 			sem_post(data->data->p_eaten);
 			post_food(data->data);
@@ -73,11 +73,9 @@ void	*check_end(void *arg)
 	t_id	*data;
 
 	data = (t_id *)arg;
-	printf("philo %d is waiting for death\n", data->id);
 	sem_wait(data->data->end);
-	printf("philo %d terminated\n", data->id);
+	printf("end\n");
 	go_on_bonus(data->data, TRUE);
-	if (data->data->dead_nbr != -1)
-		sem_post(data->data->end);
+	sem_post(data->data->end);
 	return (NULL);
 }
