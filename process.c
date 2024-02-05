@@ -20,9 +20,7 @@ void	wait_for_death(t_data_bonus *data)
 	i = 0;
 	while (i < data->nb_philo)
 	{
-		printf("waiting for %d\n", i);
 		waitpid(data->philo[i].pid, &status, 0);
-		printf("philo %d terminated\n", i);
 		i++;
 	}
 }
