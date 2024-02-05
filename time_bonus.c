@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 15:46:21 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/05 12:51:27 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/05 12:58:12 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,11 @@ long long	ft_get_time_bonus(t_time *start, t_data_bonus *data)
 {
 	long long			time_since;
 
+	sem_wait(data->start_lock);
 	sem_wait(data->time_lock);
 	time_since = (ft_current_time_bonus() - start->start_ms);
 	sem_post(data->time_lock);
+	sem_post(data->start_lock);
 	if (time_since < 0 || time_since > 100000000)
 		time_since = 0;
 	return (time_since);

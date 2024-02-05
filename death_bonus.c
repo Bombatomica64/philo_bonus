@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 16:48:57 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/05 12:36:45 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/05 12:58:22 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,6 @@ void	*check_death(void *arg)
 		data->data->philo[data->id]
 			.life_left.time_since = ft_get_time_bonus(&data->data
 				->philo[data->id].life_left, data->data);
-		printf("time since %lld\n", data->data->philo[data->id]
-			.life_left.time_since);
 		if (data->data->philo[data->id]
 			.life_left.time_since > data->data->time_to_die)
 		{
