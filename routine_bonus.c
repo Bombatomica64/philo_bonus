@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 15:27:41 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/05 09:54:11 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/05 11:54:55 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,16 @@
 
 void	philo_sleep_think(t_data_bonus *data, int id)
 {
-	print_bonus(data, SLEEP, id, ft_get_time_bonus(&data->time));
+	print_bonus(data, SLEEP, id, ft_get_time_bonus(&data->time, data));
 	ft_msleep_bonus(data->time_to_sleep);
-	print_bonus(data, THINK, id, ft_get_time_bonus(&data->time));
+	print_bonus(data, THINK, id, ft_get_time_bonus(&data->time, data));
 }
 
 void	philo_eat(t_data_bonus *data, int id)
 {
 	take_fork(data, id);
 	take_fork(data, id);
-	print_bonus(data, EAT, id, ft_get_time_bonus(&data->time));
+	print_bonus(data, EAT, id, ft_get_time_bonus(&data->time, data));
 	data->philo[id].nb_meals--;
 	if (data->philo[id].nb_meals == 0)
 		sem_post(data->fed);
@@ -42,7 +42,7 @@ void	leave_fork(t_data_bonus *data, int id)
 void	take_fork(t_data_bonus *data, int id)
 {
 	sem_wait(data->forks);
-	print_bonus(data, FORK, id, ft_get_time_bonus(&data->time));
+	print_bonus(data, FORK, id, ft_get_time_bonus(&data->time, data));
 }
 
 void	philo_life(t_data_bonus *data, int id)

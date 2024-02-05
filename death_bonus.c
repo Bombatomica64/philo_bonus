@@ -38,14 +38,14 @@ void	*check_death(void *arg)
 	{
 		data->data->philo[data->id]
 			.life_left.time_since = ft_get_time_bonus(&data->data
-				->philo[data->id].life_left);
+				->philo[data->id].life_left, data->data);
 		if (data->data->philo[data->id]
 			.life_left.time_since > data->data->time_to_die)
 		{
 			data->data->dead_nbr = data->id;
 			go_on_bonus(data->data, TRUE);
 			print_bonus(data->data, DIED, data->id,
-				ft_get_time_bonus(&data->data->time));
+				ft_get_time_bonus(&data->data->time, data->data));
 			printf("philo %d ha postato end\n", data->id);
 			sem_post(data->data->end);
 			sem_post(data->data->p_eaten);

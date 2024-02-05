@@ -6,7 +6,7 @@
 /*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 11:10:41 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/05 11:45:32 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/02/05 11:33:07 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ typedef struct s_data_bonus
 	sem_t				*go_on; // Semaphore for continuing.
 	sem_t				*end; // Semaphore for ending.
 	sem_t				*fed; // Semaphore for fed.
+	sem_t				*time_lock; // Semaphore for time.
 	sem_t				*p_eaten; // Semaphore for philo eaten.
 }	t_data_bonus;
 
@@ -121,6 +122,6 @@ void	*stop(void *arg);
  * @return void* NULL.
 */
 void	*check_end(void *arg);
-t_long	ft_get_time_bonus(t_time *start);
+t_long	ft_get_time_bonus(t_time *start, t_data_bonus *data);
 
 #endif

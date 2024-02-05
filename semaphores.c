@@ -20,10 +20,12 @@ void	make_semaphores(t_data_bonus *data)
 	sem_unlink("dead");
 	sem_unlink("end");
 	sem_unlink("eat");
+	sem_unlink("time_lock");
 	data->forks = sem_open("forks", O_CREAT, 0666, data->nb_philo);
 	data->print = sem_open("print", O_CREAT, 0666, 1);
 	data->go_on = sem_open("dead", O_CREAT, 0666, 1);
 	data->end = sem_open("end", O_CREAT, 0666, 0);
 	data->fed = sem_open("eat", O_CREAT, 0666, 0);
+	data->time_lock = sem_open("time", O_CREAT, 0666, 1);
 	data->p_eaten = sem_open("p_eaten", O_CREAT, 0666, 0);
 }

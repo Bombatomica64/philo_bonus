@@ -36,7 +36,7 @@ void	*philo_eaten(void *arg)
 		if (i == data->nb_philo)
 		{
 			if (data->dead == FALSE)
-				print_bonus(data, FED, 0, ft_get_time_bonus(&data->time));
+				print_bonus(data, FED, 0, ft_get_time_bonus(&data->time, data));
 			break ;
 		}
 	}
