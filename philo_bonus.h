@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 11:10:41 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/05 11:33:07 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/05 12:22:56 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ typedef struct s_data_bonus
 	int					time_to_eat; // Time in ms for a philosopher to eat.
 	int					time_to_sleep; // Time in ms for a philosopher to sleep.
 	int					nb_meals; // Number of meals to eat before stopping.
-	pthread_t			stop_write; // Thread for checking if a philosopher died.
+	pthread_t			stop_write; // Thread for checking if philosophers died.
 	pthread_t			eaten; // Thread for checking if all philo have eaten.
 	t_time				time; // Time struct.
 	t_philo_bonus		*philo; // Philosopher struct.

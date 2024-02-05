@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   process.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 12:12:25 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/05 11:46:33 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/02/05 12:09:56 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,9 @@ void	wait_for_death(t_data_bonus *data)
 	i = 0;
 	while (i < data->nb_philo)
 	{
+		printf("waiting for %d\n", i);
 		waitpid(data->philo[i].pid, &status, 0);
+		printf("philo %d terminated\n", i);
 		i++;
 	}
 }
@@ -46,5 +48,5 @@ void	make_processes(t_data_bonus *data)
 	pthread_detach(data->stop_write);
 	pthread_detach(data->eaten);
 	wait_for_death(data);
-	exit(EXIT_SUCCESS);
+	close_main(data);
 }

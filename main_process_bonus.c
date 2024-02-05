@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_process_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 17:11:54 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/05 11:47:56 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/02/05 12:22:40 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,11 @@ void	*philo_eaten(void *arg)
 	}
 	sem_post(data->end);
 	return (NULL);
+}
+
+void	close_main(t_data_bonus *data)
+{
+	post_food(data);
+	sem_post(data->end);
+	sem_post(data->p_eaten);
 }

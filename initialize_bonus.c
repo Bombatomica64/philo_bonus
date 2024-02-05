@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initialize_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 11:18:30 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/05 11:46:52 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/02/05 12:08:14 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,6 @@ void	init_data_bonus(t_data_bonus *data, int ac, char **av)
 {
 	input_check_bonus(av, ac, data);
 	data->nb_philo = ft_atoi_bonus(av[1]);
-	printf("nb_philo = %d\n", data->nb_philo);
 	data->time_to_die = ft_atoi_bonus(av[2]);
 	data->time_to_eat = ft_atoi_bonus(av[3]);
 	data->time_to_sleep = ft_atoi_bonus(av[4]);
