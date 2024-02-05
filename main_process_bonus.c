@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_process_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 17:11:54 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/05 15:37:06 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/05 16:26:33 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,10 @@ void	*philo_eaten(void *arg)
 		if (i == data->nb_philo)
 		{
 			if (data->dead == FALSE)
+			{
+				sem_post(data->p_eaten);
 				print_bonus(data, FED, 0, ft_get_time_bonus(&data->time, data));
+			}
 			break ;
 		}
 	}
@@ -50,28 +53,20 @@ void	close_main(t_data_bonus *data)
 {
 	post_food(data);
 	sem_post(data->end);
-	sem_post(data->p_eaten);
-
 	sem_close(data->forks);
 	sem_close(data->print);
 	sem_close(data->go_on);
 	sem_close(data->end);
 	sem_close(data->fed);
 	sem_close(data->time_lock);
-	//sem_close(data->p_eaten);
 	sem_close(data->start_lock);
-
-
 	sem_unlink("forks");
 	sem_unlink("print");
 	sem_unlink("dead");
 	sem_unlink("eat");
 	sem_unlink("end");
 	sem_unlink("time_lock");
-	//sem_unlink("p_eaten");
 	sem_unlink("start_lock");
-
-	
 	free(data->philo);
 	free(data);
 }

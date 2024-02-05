@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   routine_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 15:27:41 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/05 15:37:23 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/05 16:21:13 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@ void	philo_eat(t_data_bonus *data, int id)
 	take_fork(data, id);
 	print_bonus(data, EAT, id, ft_get_time_bonus(&data->time, data));
 	data->philo[id].nb_meals--;
-	if (data->philo[id].nb_meals == 0)
-		sem_post(data->fed);
 	get_start_bonus(&data->philo[id].life_left, data->start_lock);
 	ft_msleep_bonus(data->time_to_eat);
+	if (data->philo[id].nb_meals == 0)
+		sem_post(data->fed);
 	leave_fork(data, id);
 	leave_fork(data, id);
 }
