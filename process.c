@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 12:12:25 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/05 15:25:29 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/05 15:35:39 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,7 @@ void	wait_for_death(t_data_bonus *data)
 	i = 0;
 	while (i < data->nb_philo)
 	{
-		printf("waiting for %d\n", i);
 		waitpid(data->philo[i].pid, &status, 0);
-		printf("philo %d terminated\n", i);
 		i++;
 	}
 }
