@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 15:27:41 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/05 15:25:19 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/05 15:37:23 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,9 @@ void	philo_life(t_data_bonus *data, int id)
 		philo_eat(data, id);
 		philo_sleep_think(data, id);
 	}
-//	pthread_join(data->philo[id].thread, NULL);
+	pthread_join(data->philo[id].thread, NULL);
 	pthread_join(data->philo[id].end, NULL);
-//	pthread_detach(data->philo[id].end);
-//	pthread_detach(data->philo[id].thread);
+	pthread_detach(data->philo[id].end);
+	pthread_detach(data->philo[id].thread);
 	ft_close_bonus(data);
 }
