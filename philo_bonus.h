@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   philo_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 11:10:41 by lmicheli          #+#    #+#             */
 /*   Updated: 2024/02/05 11:33:07 by lmicheli         ###   ########.fr       */
@@ -45,6 +45,7 @@ typedef struct s_data_bonus
 	int					time_to_eat; // Time in ms for a philosopher to eat.
 	int					time_to_sleep; // Time in ms for a philosopher to sleep.
 	int					nb_meals; // Number of meals to eat before stopping.
+	pthread_t			stop_write; // Thread for checking if a philosopher died.
 	pthread_t			eaten; // Thread for checking if all philo have eaten.
 	t_time				time; // Time struct.
 	t_philo_bonus		*philo; // Philosopher struct.
@@ -54,6 +55,7 @@ typedef struct s_data_bonus
 	sem_t				*end; // Semaphore for ending.
 	sem_t				*fed; // Semaphore for fed.
 	sem_t				*time_lock; // Semaphore for time.
+	sem_t				*p_eaten; // Semaphore for philo eaten.
 }	t_data_bonus;
 
 typedef struct s_data_id_bonus
@@ -112,6 +114,7 @@ void	post_food(t_data_bonus *data);
 void	ft_msleep_bonus(int time);
 void	*check_death(void *arg);
 void	*philo_eaten(void *arg);
+void	*stop(void *arg);
 
 /**
  * @brief Check if the simulation has ended elsewhere.

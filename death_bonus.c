@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   death_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 16:48:57 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/05 11:23:30 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/05 11:39:43 by mruggier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ void	*check_death(void *arg)
 				ft_get_time_bonus(&data->data->time, data->data));
 			printf("philo %d ha postato end\n", data->id);
 			sem_post(data->data->end);
+			sem_post(data->data->p_eaten);
 			post_food(data->data);
 			return (NULL);
 		}
