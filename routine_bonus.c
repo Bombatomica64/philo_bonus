@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   routine_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 15:27:41 by lmicheli          #+#    #+#             */
 /*   Updated: 2024/02/05 15:37:23 by lmicheli         ###   ########.fr       */
