@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 15:46:21 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/05 11:18:52 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/05 11:22:36 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,12 @@ void	get_start_bonus(t_time *start)
 		+ (start->start.tv_usec) / 1000;
 }
 
-long long	ft_get_time_bonus(t_time *start)
+long long	ft_get_time_bonus(t_time *start, t_data_bonus *data)
 {
 	long long			time_since;
 
+	sem_wait(data->time_lock);
 	time_since = ft_current_time_bonus() - start->start_ms;
+	sem_post(data->time_lock);
 	return (time_since);
 }

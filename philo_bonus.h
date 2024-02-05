@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 11:10:41 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/05 11:19:02 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/05 11:33:07 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,13 @@ typedef struct s_philo_bonus
 	pthread_t			thread; // Philosopher thread.
 	pthread_t			end; // Philosopher end thread.
 	t_time				life_left; // Time left before death.
-	t_bool				dead; // Boolean for death.
 	t_bool				overfed; // Boolean for fed.
 }	t_philo_bonus;
 
 typedef struct s_data_bonus
 {
 	int					dead_nbr; // id of the dead philosopher.
+	t_bool				dead; // Boolean for death.
 	t_bool				go_on_b; // Boolean for continuing.
 	int					nb_philo; // Number of philosophers.
 	int					time_to_die; // Time in ms before a philosopher dies.
@@ -53,6 +53,7 @@ typedef struct s_data_bonus
 	sem_t				*go_on; // Semaphore for continuing.
 	sem_t				*end; // Semaphore for ending.
 	sem_t				*fed; // Semaphore for fed.
+	sem_t				*time_lock; // Semaphore for time.
 }	t_data_bonus;
 
 typedef struct s_data_id_bonus
@@ -118,6 +119,6 @@ void	*philo_eaten(void *arg);
  * @return void* NULL.
 */
 void	*check_end(void *arg);
-t_long	ft_get_time_bonus(t_time *start);
+t_long	ft_get_time_bonus(t_time *start, t_data_bonus *data);
 
 #endif

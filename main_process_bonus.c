@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 17:11:54 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/05 11:01:30 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/05 11:24:34 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	*philo_eaten(void *arg)
 		if (i == data->nb_philo)
 		{
 			// if (/*non e morto nessuno*/)
-				print_bonus(data, FED, 0, ft_get_time_bonus(&data->time));
+				print_bonus(data, FED, 0, ft_get_time_bonus(&data->time, data));
 			break ;
 		}
 	}
