@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 15:27:41 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/05 12:49:43 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/05 15:25:19 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ void	philo_life(t_data_bonus *data, int id)
 		&check_end, make_data_id_bonus(data, id));
 	if (id % 2 == 0)
 		ft_msleep_bonus(100);
-	get_start_bonus(&data->philo[id].life_left, data->start_lock);
 	while (go_on_bonus(data, FALSE) == TRUE)
 	{
 		philo_eat(data, id);
