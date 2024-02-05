@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 16:48:57 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/05 17:49:51 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/05 18:00:37 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	alone(t_data_bonus *data, int id)
 
 void	ft_close_bonus(t_data_bonus *data)
 {
+	sem_post(data->print);
 	sem_close(data->forks);
 	sem_close(data->print);
 	sem_close(data->go_on);
@@ -52,10 +53,6 @@ void	*check_death(void *arg)
 			data->data->dead_nbr = data->id;
 			print_bonus(data->data, DIED, data->id,
 				ft_get_time_bonus(&data->data->time, data->data));
-			sem_post(data->data->end);
-			sem_post(data->data->p_eaten);
-			post_food(data->data);
-			go_on_bonus(data->data, TRUE);
 			free(data);
 			return (NULL);
 		}

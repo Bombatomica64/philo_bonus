@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 12:19:27 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/05 12:08:49 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/05 17:59:59 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,14 @@ void	print_bonus(t_data_bonus *data, t_action action, int id, long time_s)
 		return ;
 	sem_wait(data->print);
 	prints_b(action, time_s, id, data);
+	if (action == DIED)
+	{
+		sem_post(data->end);
+		sem_post(data->p_eaten);
+		go_on_bonus(data, TRUE);
+		post_food(data);
+		return ;
+	}
 	sem_post(data->print);
 }
 
