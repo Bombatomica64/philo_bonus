@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 11:10:41 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/02 18:28:10 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/02/05 11:19:02 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,38 @@ typedef struct s_data_id_bonus
 	int					id; // Philosopher id.
 }	t_id;
 
-void	prints_b(t_action action, long time_since, int id, t_data_bonus *data);
+typedef long long	t_long;
+
+/**
+ * @brief Prints the action of a philosopher in the dining simulation.
+ *
+ * This function prints the action of a philosopher in the dining simulation
+ * based on the provided parameters.
+ *
+ * @param data Pointer to the data structure holding 
+ * simulation parameters and state.
+ * @param action The action performed by the philosopher 
+ * (EAT, SLEEP, THINK, DIED, FORK, FORK_LEFT, FED).
+ * @param id The ID of the philosopher performing the action.
+ * @param time_s The time elapsed since the start of the simulation (in seconds).
+ */
 void	print_bonus(t_data_bonus *data, t_action action, int id, long time_s);
+
+/**
+ * @brief Prints the action of a philosopher with additional formatting.
+ *
+ * This function prints the action of a philosopher with additional formatting
+ * based on the provided parameters.
+ *
+ * @param action The action performed by the philosopher '
+ * (EAT, SLEEP, THINK, DIED, FORK, FORK_LEFT, FED).
+ * @param time_since The time elapsed since 
+ * the start of the action (in milliseconds).
+ * @param id The ID of the philosopher performing the action.
+ * @param data Pointer to the data structure
+ *  holding simulation parameters and state.
+ */
+void	prints_b(t_action action, long time_since, int id, t_data_bonus *data);
 void	input_check_bonus(char **av, int ac, t_data_bonus *data);
 void	init_data_bonus(t_data_bonus *data, int ac, char **av);
 void	philo_life(t_data_bonus *data, int identificator);
@@ -75,12 +105,12 @@ void	take_fork(t_data_bonus *data, int id);
 void	make_semaphores(t_data_bonus *data);
 void	ft_close_bonus(t_data_bonus *data);
 void	make_processes(t_data_bonus *data);
-long	ft_get_time_bonus(t_time *start);
-void	*philo_eaten(void *arg);
 void	get_start_bonus(t_time *start);
 int		ft_atoi_bonus(const char *str);
+void	post_food(t_data_bonus *data);
 void	ft_msleep_bonus(int time);
 void	*check_death(void *arg);
+void	*philo_eaten(void *arg);
 
 /**
  * @brief Check if the simulation has ended elsewhere.
@@ -88,5 +118,6 @@ void	*check_death(void *arg);
  * @return void* NULL.
 */
 void	*check_end(void *arg);
+t_long	ft_get_time_bonus(t_time *start);
 
 #endif

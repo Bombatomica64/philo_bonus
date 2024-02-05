@@ -6,16 +6,16 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 15:46:21 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/01/31 15:58:15 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/05 11:18:52 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_bonus.h"
 
-long	ft_current_time_bonus(void)
+long long	ft_current_time_bonus(void)
 {
 	struct timeval	tv;
-	long			time_in_ms;
+	long long		time_in_ms;
 
 	gettimeofday(&tv, NULL);
 	time_in_ms = (tv.tv_sec) * 1000 + (tv.tv_usec) / 1000;
@@ -38,9 +38,9 @@ void	get_start_bonus(t_time *start)
 		+ (start->start.tv_usec) / 1000;
 }
 
-long	ft_get_time_bonus(t_time *start)
+long long	ft_get_time_bonus(t_time *start)
 {
-	long			time_since;
+	long long			time_since;
 
 	time_since = ft_current_time_bonus() - start->start_ms;
 	return (time_since);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   death_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 16:48:57 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/02 18:26:31 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/02/05 11:18:05 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,17 @@
 
 void	ft_close_bonus(t_data_bonus *data)
 {
-	(void)data;
 	sem_close(data->forks);
-	//free(data->forks);
 	sem_close(data->end);
-	//free(data->end);
 	sem_close(data->print);
-	//free(data->print);
 	sem_close(data->go_on);
-	//free(data->go_on);
-	
-	sem_unlink("forks");
-	sem_unlink("print");
-	sem_unlink("dead");
-	sem_unlink("eat");
-	sem_unlink("end");
-	
+	// sem_unlink("forks");
+	// sem_unlink("print");
+	// sem_unlink("dead");
+	// sem_unlink("eat");
+	// sem_unlink("end");
 	free(data->philo);
 	free(data);
-	// kill(0, SIGTERM);
 	printf("philo terminated\n");
 	exit(EXIT_SUCCESS);
 }
@@ -46,7 +38,7 @@ void	*check_death(void *arg)
 	{
 		data->data->philo[data->id]
 			.life_left.time_since = ft_get_time_bonus(&data->data
-			->philo[data->id].life_left);
+				->philo[data->id].life_left);
 		if (data->data->philo[data->id]
 			.life_left.time_since > data->data->time_to_die)
 		{
@@ -54,17 +46,25 @@ void	*check_death(void *arg)
 			go_on_bonus(data->data, TRUE);
 			print_bonus(data->data, DIED, data->id,
 				ft_get_time_bonus(&data->data->time));
+			printf("philo %d ha postato end\n", data->id);
 			sem_post(data->data->end);
+			post_food(data->data);
 			return (NULL);
 		}
-/* 		if (sem_wait(data->data->end) != -1)
-		{
-			sem_post(data->data->end);
-			go_on_bonus(data->data, TRUE);
-			return (NULL);
-		} */
 	}
 	return (NULL);
+}
+
+void	post_food(t_data_bonus *data)
+{
+	int	i;
+
+	i = 0;
+	while (i < data->nb_philo)
+	{
+		sem_post(data->fed);
+		i++;
+	}
 }
 
 void	*check_end(void *arg)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_process_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 17:11:54 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/02 18:46:13 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/02/05 11:01:30 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,10 @@
 
 void	*philo_eaten(void *arg)
 {
-	t_data_bonus *data;
-	
-	data = (t_data_bonus *)arg;
-	int	i;
+	t_data_bonus	*data;
+	int				i;
 
+	data = (t_data_bonus *)arg;
 	i = 0;
 	while (i < data->nb_philo)
 	{
@@ -26,13 +25,11 @@ void	*philo_eaten(void *arg)
 		i++;
 		if (i == data->nb_philo)
 		{
-			printf("\n\n\nphilo %d has eaten\n\n\n", i);
-			kill(0, SIGINT);
-			break;
+			// if (/*non e morto nessuno*/)
+				print_bonus(data, FED, 0, ft_get_time_bonus(&data->time));
+			break ;
 		}
-		
 	}
 	sem_post(data->end);
-
 	return (NULL);
 }

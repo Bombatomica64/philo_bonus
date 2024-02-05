@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 17:39:01 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/02 15:49:10 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/02/05 09:55:50 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_id	*make_data_id_bonus(t_data_bonus *data, int id)
 t_bool	go_on_bonus(t_data_bonus *data, t_bool stop)
 {
 	t_bool	go_on;
-	
+
 	sem_wait(data->go_on);
 	if (stop == TRUE)
 	{
