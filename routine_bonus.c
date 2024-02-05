@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 15:27:41 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/05 16:21:13 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/05 16:38:54 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,11 @@ void	take_fork(t_data_bonus *data, int id)
 
 void	philo_life(t_data_bonus *data, int id)
 {
+	if (data->nb_philo == 1)
+	{
+		alone(data, id);
+		ft_close_bonus(data);
+	}
 	pthread_create(&data->philo[id].thread, NULL,
 		&check_death, make_data_id_bonus(data, id));
 	pthread_create(&data->philo[id].end, NULL,

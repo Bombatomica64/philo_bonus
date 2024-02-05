@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 12:12:25 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/05 16:19:50 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/05 16:31:23 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	make_processes(t_data_bonus *data)
 	pthread_detach(data->stop_write);
 	pthread_create(&data->eaten, NULL, &philo_eaten, data);
 	pthread_detach(data->eaten);
-//	pthread_join(data->stop_write, NULL);
+	pthread_join(data->stop_write, NULL);
 	wait_for_death(data);
 	close_main(data);
 }

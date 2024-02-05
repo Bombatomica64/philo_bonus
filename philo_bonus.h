@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 11:10:41 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/05 15:55:27 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/02/05 16:42:09 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ void	print_bonus(t_data_bonus *data, t_action action, int id, long time_s);
  * @param data Pointer to the data structure
  *  holding simulation parameters and state.
  */
-void	prints_b(t_action action, long time_since, int id, t_data_bonus *data);\
+void	prints_b(t_action action, long time_since, int id, t_data_bonus *data);
 
 /**
  * @brief Checks if the inputs are valid.
@@ -136,6 +136,6 @@ void	*stop(void *arg);
 */
 void	*check_end(void *arg);
 t_long	ft_get_time_bonus(t_time *start, t_data_bonus *data);
-
+void	alone(t_data_bonus *data, int id);
 
 #endif
