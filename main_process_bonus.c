@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 17:11:54 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/05 16:26:33 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/05 17:43:34 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,9 @@ void	*philo_eaten(void *arg)
 			if (data->dead == FALSE)
 			{
 				sem_post(data->p_eaten);
+				sem_post(data->end);
 				print_bonus(data, FED, 0, ft_get_time_bonus(&data->time, data));
+			//	sem_wait(data->print);
 			}
 			break ;
 		}
@@ -53,6 +55,7 @@ void	close_main(t_data_bonus *data)
 {
 	post_food(data);
 	sem_post(data->end);
+	sem_post(data->print);
 	sem_close(data->forks);
 	sem_close(data->print);
 	sem_close(data->go_on);
