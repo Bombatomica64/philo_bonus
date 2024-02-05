@@ -6,7 +6,7 @@
 /*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 11:18:30 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/02 18:19:28 by mruggier         ###   ########.fr       */
+/*   Updated: 2024/02/05 11:46:52 by mruggier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,5 +86,6 @@ void	init_data_bonus(t_data_bonus *data, int ac, char **av)
 		data->nb_meals = -4666;
 	data->philo = malloc(sizeof(t_philo_bonus) * data->nb_philo);
 	data->dead_nbr = -1;
+	data->dead = FALSE;
 	get_start_bonus(&data->time);
 }
