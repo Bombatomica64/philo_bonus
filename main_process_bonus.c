@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_process_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mruggier <mruggier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 17:11:54 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/06 12:18:54 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/06 13:00:09 by mruggier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,12 @@ void	*stop(void *arg)
 	t_data_bonus	*data;
 
 	data = (t_data_bonus *)arg;
+	sem_wait(data->fed);
 	sem_wait(data->p_eaten);
 	data->dead = TRUE;
 	sem_close(data->p_eaten);
 	sem_unlink("p_eaten");
+	sem_post(data->fed);
 	return (NULL);
 }
 
