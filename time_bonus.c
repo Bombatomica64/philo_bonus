@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 15:46:21 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/05 15:33:18 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/06 11:45:49 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	ft_msleep_bonus(int time)
 
 	tmp = ft_current_time_bonus() + time;
 	while (ft_current_time_bonus() < tmp)
-		usleep(10);
+		usleep(200);
 }
 
 void	get_start_bonus(t_time *start, sem_t *start_lock)

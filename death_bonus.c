@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 16:48:57 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/05 18:00:37 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/06 10:22:51 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ void	alone(t_data_bonus *data, int id)
 {
 	take_fork(data, id);
 	print_bonus(data, THINK, id, ft_get_time_bonus(&data->time, data));
-	ft_msleep_bonus(data->time_to_die + 10);
+	ft_msleep_bonus(data->time_to_die);
 	leave_fork(data, id);
-	post_food(data);
+	print_bonus(data, DIED, id, ft_get_time_bonus(&data->time, data));
 }
 
 void	ft_close_bonus(t_data_bonus *data)
