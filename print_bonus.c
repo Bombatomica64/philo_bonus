@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 12:19:27 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/05 17:59:59 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/06 15:42:40 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,6 @@ void	prints_b(t_action action, long time_since, int id, t_data_bonus *data)
 			time_since, id + 1);
 	else if (action == FORK)
 		printf("\033[1m%ld \033[0;93mphilo[%d] has taken a fork\033[0m 🍴️\n",
-			time_since, id + 1);
-	else if (action == FORK_LEFT)
-		printf("\033[1m%ld\033[0;35m philo[%d] has left a fork\033[0m\n",
 			time_since, id + 1);
 	else if (action == FED)
 		printf("\033[32m%ld Each philo ate %i times and it's full\033[0m ⭐️\n",

@@ -34,6 +34,6 @@ vall: re
 
 hell: re
 	valgrind  --tool=helgrind \
-	./$(NAME) 4 800 200 200 3
+	./$(NAME) 10 800 200 200 3
 
 .PHONY: all clean fclean re

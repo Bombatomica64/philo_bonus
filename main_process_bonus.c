@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 17:11:54 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/06 12:18:54 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/06 15:46:08 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,11 @@ void	*stop(void *arg)
 
 	data = (t_data_bonus *)arg;
 	sem_wait(data->p_eaten);
+	if (data->nb_philo == 1)
+		sem_wait(data->fed);
 	data->dead = TRUE;
+	if (data->nb_philo == 1)
+		sem_post(data->fed);
 	sem_close(data->p_eaten);
 	sem_unlink("p_eaten");
 	return (NULL);
