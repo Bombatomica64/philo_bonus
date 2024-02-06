@@ -6,7 +6,7 @@
 /*   By: lmicheli <lmicheli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 17:11:54 by lmicheli          #+#    #+#             */
-/*   Updated: 2024/02/06 10:01:05 by lmicheli         ###   ########.fr       */
+/*   Updated: 2024/02/06 12:18:54 by lmicheli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,8 @@ void	close_main(t_data_bonus *data)
 	sem_unlink("forks");
 	sem_unlink("print");
 	sem_unlink("dead");
-	sem_unlink("eat");
 	sem_unlink("end");
+	sem_unlink("eat");
 	sem_unlink("time_lock");
 	sem_unlink("start_lock");
 	free(data->philo);
