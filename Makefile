@@ -28,12 +28,4 @@ fclean: clean
 
 re: fclean all
 
-vall: re
-	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --trace-children=yes \
-	./$(NAME) 3 800 200 2000 1
-
-hell: re
-	valgrind  --tool=helgrind \
-	./$(NAME) 10 800 200 200 3
-
 .PHONY: all clean fclean re
